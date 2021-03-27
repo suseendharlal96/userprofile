@@ -58,11 +58,11 @@ export const updateProfile = async (req, res) => {
     return res.status(400).json({ Image: "Image is required" });
   }
   try {
-    const post = await ProfileModal.findOne({ _id });
-    const updatedPost = await ProfileModal.findByIdAndUpdate(_id, body, {
+    const profile = await ProfileModal.findOne({ _id });
+    const updatedProfile = await ProfileModal.findByIdAndUpdate(_id, body, {
       new: true,
     });
-    res.status(200).json(updatedPost);
+    res.status(200).json(updatedProfile);
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "update not successful" });

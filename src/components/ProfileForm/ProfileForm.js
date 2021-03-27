@@ -10,13 +10,13 @@ import {
 
 import useStyle from "./styles";
 import * as action from "../../store/actions/index";
-const PostForm = ({ editId, setEditId }) => {
+const ProfileForm = ({ editId, setEditId }) => {
   const classes = useStyle();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.profileReducer.creating);
   const profiles = useSelector((state) => state.profileReducer.profiles);
   const errors = useSelector((state) => state.profileReducer.errors);
-  const editPost = editId
+  const editProfile = editId
     ? profiles &&
       profiles.length &&
       profiles.find((profile) => profile._id === editId)
@@ -26,8 +26,8 @@ const PostForm = ({ editId, setEditId }) => {
     Image: "",
   });
   useEffect(() => {
-    if (editPost) {
-      setProfileData(editPost);
+    if (editProfile) {
+      setProfileData(editProfile);
     }
   }, [editId]);
 
@@ -41,7 +41,7 @@ const PostForm = ({ editId, setEditId }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (editPost) {
+    if (editProfile) {
       dispatch(action.updateProfile(editId, profileData));
     } else {
       dispatch(action.createProfile(profileData));
@@ -57,7 +57,7 @@ const PostForm = ({ editId, setEditId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {editPost ? "Edit " : "Create User Profile"}
+          {editProfile ? "Edit " : "Create User Profile"}
         </Typography>
         {errors && errors?.message && (
           <Typography color="error" align="center" variant="h6">
@@ -133,4 +133,4 @@ const PostForm = ({ editId, setEditId }) => {
   );
 };
 
-export default PostForm;
+export default ProfileForm;

@@ -43,40 +43,36 @@ const Profile = ({ profile, setEditId }) => {
       >
         {profile.name}
       </Typography>
-      {/* <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {post.message}
-        </Typography>
-      </CardContent> */}
       <CardActions className={classes.cardActions}>
         {authData && !isDetailPage && (
-          <>
-            <Button
-              size="small"
-              color="primary"
-              onClick={() => setEditId(profile._id)}
-              title="Edit"
-            >
-              <CreateIcon fontSize="small" />
-            </Button>
-            <Button
-              size="small"
-              color="primary"
-              title="View details"
-              onClick={() => history.push(`/profileDetail/${profile._id}`)}
-            >
-              <ViewCompactIcon fontSize="small" />
-            </Button>
-
-            <Button
-              size="small"
-              color="secondary"
-              title="Delete"
-              onClick={() => dispatch(action.deleteProfile(profile._id))}
-            >
-              <DeleteIcon fontSize="small" />
-            </Button>
-          </>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => setEditId(profile._id)}
+            title="Edit"
+          >
+            <CreateIcon fontSize="small" />
+          </Button>
+        )}
+        {!isDetailPage && (
+          <Button
+            size="small"
+            color="primary"
+            title="View details"
+            onClick={() => history.push(`/profileDetail/${profile._id}`)}
+          >
+            <ViewCompactIcon fontSize="small" />
+          </Button>
+        )}
+        {authData && !isDetailPage && (
+          <Button
+            size="small"
+            color="secondary"
+            title="Delete"
+            onClick={() => dispatch(action.deleteProfile(profile._id))}
+          >
+            <DeleteIcon fontSize="small" />
+          </Button>
         )}
       </CardActions>
     </Card>
